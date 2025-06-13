@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from './Modal';
 
-function MovieCard({ movie, voteAverage }) {
+function MovieCard({ movie, voteAverage, toggleFavorite, toggleWatched, isFavorite, isWatched }) {
   const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   const [modalShow, setModalShow] = useState(false);
@@ -9,9 +9,6 @@ function MovieCard({ movie, voteAverage }) {
   const handleCardClick = () => {
     setModalShow(true);
   };
-
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [isWatched, setIsWatched] = useState(false);
 
   return (
     <>
@@ -21,7 +18,7 @@ function MovieCard({ movie, voteAverage }) {
             className={`favorite-button ${isFavorite ? 'favorite' : ''}`}
             onClick={(e) => {
               e.stopPropagation();
-              setIsFavorite(!isFavorite);
+              toggleFavorite(movie);
             }}
           >
             {isFavorite ? '❤️' : '🤍'}
@@ -31,7 +28,7 @@ function MovieCard({ movie, voteAverage }) {
             className={`watched-button ${isWatched ? 'watched' : ''}`}
             onClick={(e) => {
               e.stopPropagation();
-              setIsWatched(!isWatched);
+              toggleWatched(movie);
             }}
           >
             {isWatched ? 'seen' : 'unseen'}

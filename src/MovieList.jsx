@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar'
 import SortSelector from './components/SortSelector'
 import GenreFilter from './components/GenreFilter'
 
-function MovieList() {
+function MovieList({ toggleFavorite, toggleWatched, isMovieFavorite, isMovieWatched }) {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
@@ -116,7 +116,7 @@ function MovieList() {
       'title': (a, b) => a.title.localeCompare(b.title),
       'release_date': (a, b) => new Date(b.release_date) - new Date(a.release_date),
       'vote_average': (a, b) => b.vote_average - a.vote_average,
-      'default': () => {} 
+      'default': () => {}
     };
 
     const sortFunction = sortFunctions[sortOption] || sortFunctions['default'];
@@ -189,6 +189,10 @@ function MovieList() {
               key={movie.id}
               movie={movie}
               voteAverage={movie.vote_average}
+              toggleFavorite={toggleFavorite}
+              toggleWatched={toggleWatched}
+              isFavorite={isMovieFavorite(movie.id)}
+              isWatched={isMovieWatched(movie.id)}
             />
           ))
         ) : (

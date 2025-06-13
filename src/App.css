@@ -1,9 +1,19 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 140px); 
+  overflow: hidden;
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(to bottom, #1D4ED8, #0F172A);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,14 +25,15 @@
 .App-footer{
   text-align: right;
   padding: 10px;
-  background-color: #282c34;
-  color: white;
-
+  background-color: #0F172A;
+  color: #FFFFFF;
 }
 
 
-.movie-list {
+.movie-list, .page-container {
   padding: 20px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .movies-container {
@@ -36,15 +47,17 @@
 
 .movie-card {
   width: 250px;
-  background-color: white;
-  border-radius: 8px;
+  background-color: #0F172A;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid #2D3748;
 }
 
 .movie-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
 }
 
 .movie-card h2 {
@@ -57,6 +70,7 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
+  color: #FFFFFF;
 }
 
 .movie-card .poster {
@@ -93,22 +107,23 @@
 
 .movie-card .watched-button {
   padding: 6px 12px;
-  border: 1px solid #282c34;
+  border: 1px solid #3B82F6;
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: white;
-  color: #282c34;
+  background-color: #0F172A;
+  color: #FFFFFF;
 }
 
 .movie-card .watched-button:hover {
   transform: scale(1.05);
+  background-color: #1E293B;
 }
 
 .movie-card .watched-button.watched {
   animation: pulse 0.5s;
-  background-color: #282c34;
+  background-color: #3B82F6;
   color: white;
   font-weight: bold;
 }
@@ -120,8 +135,8 @@
 }
 
 
-.movie-card .vote-average {
-  background-color: #282c34;
+.vote-average {
+  background-color: #3B82F6;
   color: white;
   padding: 8px;
   margin: 0;
@@ -137,16 +152,18 @@
 .load-more-button {
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
-  background-color: #282c34;
+  border-radius: 8px;
+  background-color: #3B82F6;
   color: white;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .load-more-button:hover {
-  background-color: #444;
+  background-color: #60A5FA;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .controls-container {
@@ -167,38 +184,49 @@
 
 .search-input {
   padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #334155;
+  border-radius: 8px;
   font-size: 16px;
   width: 200px;
+  transition: all 0.3s ease;
+  background-color: #0F172A;
+  color: #F8FAFC;
+}
+
+.search-input:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  outline: none;
 }
 
 .search-button {
   padding: 8px 12px;
   border: none;
-  border-radius: 4px;
-  background-color: #282c34;
+  border-radius: 8px;
+  background-color: #3B82F6;
   color: white;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #444;
+  background-color: #60A5FA;
 }
 
 .clear-button {
   padding: 8px 12px;
   border: none;
-  border-radius: 4px;
-  background-color: #6c757d;
+  border-radius: 8px;
+  background-color: #4B5563;
   color: white;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .clear-button:hover {
-  background-color: #5a6268;
+  background-color: #6B7280;
 }
 
 .view-toggle {
@@ -210,17 +238,17 @@
 
 .view-toggle button {
   padding: 8px 16px;
-  border: 1px solid #282c34;
-  border-radius: 4px;
-  background-color: white;
-  color: #282c34;
+  border: 1px solid #3B82F6;
+  border-radius: 8px;
+  background-color: #0F172A;
+  color: #FFFFFF;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .view-toggle button.active {
-  background-color: #282c34;
+  background-color: #3B82F6;
   color: white;
 }
 
@@ -238,17 +266,20 @@
 
 .sort-select, .filter-select {
   padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #334155;
+  border-radius: 8px;
   font-size: 16px;
-  background-color: white;
+  background-color: #0F172A;
+  color: #F8FAFC;
   cursor: pointer;
   width: 180px;
+  transition: all 0.3s ease;
 }
 
 .sort-select:focus, .filter-select:focus {
   outline: none;
-  border-color: #282c34;
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 @media (max-width: 1200px) {

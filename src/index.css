@@ -1,11 +1,12 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #712f2f;
+  background-color: #121212;
+  color: #FFFFFF;
 }
 
 button {
-  background-color: #282c34;
+  background-color: #2563EB;
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -14,6 +15,6 @@ button {
 }
 
 button:hover {
-  background-color: #777;
+  background-color: #3B82F6;
   color: white;
 }
