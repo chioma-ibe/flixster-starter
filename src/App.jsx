@@ -9,6 +9,9 @@ const App = () => {
         <h1>Flixster</h1>
       </header>
       <MovieList />
+      <footer className='App-footer'>
+        <h3> © 2025 Flixter inc</h3>
+      </footer>
     </div>
   )
 }
